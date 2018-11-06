@@ -1,27 +1,27 @@
-# from bs4 import BeautifulSoup
-# import requests
-# import json
-# import pprint
-#
-# headers={
-# 'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
-#
-# }
-#
-# url_paths=['https://www.pexels.com/search/table/?page={}/'.format(str(i)) for i in range(0,10)]
-# path='/Users/sikezheng/Pictures/downloads/'    #要在路径最后加上/
-#
-# for url_path in url_paths:
-#     wb_data=requests.get(url_path,headers=headers)
-#     soup=BeautifulSoup(wb_data.text,'lxml')
-#     # print(wb_data.text)
-#     imgs=soup.select('div.page-wrap > div.l-container > div.photos > article > a:nth-of-type(2)') # a:nth-of-tpye(2)代表第二个a标签，只选中第二个a标签
-#     list=[]
-#     # print(imgs)
-#     for img in imgs:
-#         photo=img.get('href')
-#         list.append(photo)
-#     # pprint.pprint(imgs)
+from bs4 import BeautifulSoup
+import requests
+import json
+import pprint
+
+headers={
+'User-Agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.77 Safari/537.36'
+
+}
+
+url_paths=['https://www.pexels.com/search/table/?page={}/'.format(str(i)) for i in range(0,10)]
+path='/Users/sikezheng/Pictures/downloads/'    #要在路径最后加上/
+
+for url_path in url_paths:
+    wb_data=requests.get(url_path,headers=headers)
+    soup=BeautifulSoup(wb_data.text,'lxml')
+    # print(wb_data.text)
+    imgs=soup.select('div.page-wrap > div.l-container > div.photos > article > a:nth-of-type(2)') # a:nth-of-tpye(2)代表第二个a标签，只选中第二个a标签
+    list=[]
+    # print(imgs)
+    for img in imgs:
+        photo=img.get('href')
+        list.append(photo)
+    # pprint.pprint(imgs)
 #     # pprint.pprint(list)
 #     for item in list:
 #         data=requests.get(item,headers=headers)
